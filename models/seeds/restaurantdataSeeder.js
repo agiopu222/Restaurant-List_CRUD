@@ -2,7 +2,10 @@
 const mongoose = require('mongoose')
 
 // 載入 restaurantdata model
-const RestaurantData = require('../restaurantdata')
+const restaurantData = require('../restaurantdata')
+
+// 把原本JSON的資料當成seeder
+const restaurantList = require("../../restaurant.json")
 
 // 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -20,18 +23,9 @@ db.on('error', () => {
 })
 // 連線成功
 db.once('open', () => {
-    console.log('mongodb connected!')
-    for (let i = 0; i < 10; i++) {
-      RestaurantData.create({
-        name:`name-${i}`,
-        category: `哈囉`, 
-        image: `哈囉`, 
-        location: `哈囉`, 
-        phone: `02-1234-5678`, 
-        google_map: `哈囉`, 
-        rating: `5.0`, 
-        description: `哈囉`, 
-    })
-    }
+  console.log('mongoDB connected')
+
+  restaurantData.create (restaurantList.results)
+    .catch(error => console.log(error))
     console.log('done')
 })

@@ -1,7 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const restaurantdataSchema = new Schema({
+
+// 定義資料結構
+const restaurantDataSchema = new Schema({
     name: {
+        type: String, // 資料型別是字串
+        required: true // 這是個必填欄位
+    },
+    name_en: {
         type: String, // 資料型別是字串
         required: true // 這是個必填欄位
     },
@@ -34,4 +40,5 @@ const restaurantdataSchema = new Schema({
         required: true // 這是個必填欄位
     }
 })
-module.exports = mongoose.model('RestaurantData', restaurantdataSchema)
+
+module.exports = mongoose.model('restaurantData', restaurantDataSchema)
