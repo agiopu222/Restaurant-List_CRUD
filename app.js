@@ -56,15 +56,14 @@ app.get('/search', (req, res) => {
   res.render('index', { lists: restaurantList })
 })
 
-app.get('/restaurants/:_id', (req, res) => {
-  // console.log('req.params.id', req.params.id) //在首頁點選餐廳，會跑出正確的id
-  // const lists = restaurantList.results.find (
-  //   function(restaurants) {
-  //     return restaurants.id.toString() === req.params.id })
-  const lists = restaurantList.find (
-    restaurants => restaurants._id == req.params._id )
-    
-  res.render('show', { lists: lists })
+// CRUD, U
+// 瀏覽詳細資料改成透過資料庫取得
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  restaurantList.findById(id)
+    .lean()
+    .then((list) => res.render('show', { list }))
+    .catch(error => console.log(error))
 })
 
 // 設定 port 3000
