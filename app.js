@@ -29,6 +29,11 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+// 引用 body-parser
+const bodyParser = require('body-parser')
+// 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
+app.use(bodyParser.urlencoded({ extended: true }))
+
 // 設定樣板引擎
 app.engine('hbs', exphbs({ defaultLayout: 'main' , extname: '.hbs' }));
 app.set('view engine', 'hbs')
@@ -37,7 +42,7 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 // 設定路由
-// 瀏覽
+// 首頁
 app.get('/', (req, res) => {
   restaurantList.find() // 取出 restaurantList model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
@@ -54,6 +59,18 @@ app.get('/search', (req, res) => {
       return lists.title.includes(keyword)
   })
   res.render('index', { lists: restaurantList })
+})
+
+// 設定路由, 新增頁面
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+// CRUD, C
+app.post('/restaurants', (req, res) => {
+  restaurantList.create(req.body)
+  .then(() => res.redirect('/'))
+  .catch(error => console.log(error))
 })
 
 // CRUD, U
