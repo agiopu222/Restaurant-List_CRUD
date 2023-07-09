@@ -42,7 +42,7 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 // 設定路由
-// 首頁
+// 首頁, 瀏覽全部餐廳
 app.get('/', (req, res) => {
   restaurantList.find() // 取出 restaurantList model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
@@ -73,7 +73,8 @@ app.post('/restaurants', (req, res) => {
   .catch(error => console.log(error))
 })
 
-// CRUD, U
+// CRUD, R
+// 瀏覽特定餐廳
 // 瀏覽詳細資料改成透過資料庫取得
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
