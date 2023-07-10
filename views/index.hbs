@@ -37,7 +37,7 @@
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
-        {{#each lists}}
+        {{#each restaurants}}
         <a href="/restaurants/{{this._id}}" class="text-secondary">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
@@ -53,6 +53,11 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
             </div>
+
+            <div class="card-body">
+              <a href="/restaurants/{{this._id}}/edit"><button class="btn btn-link btn-sm">Edit</button></a>
+            </div>
+
           </div>
         </a>
         {{/each}}

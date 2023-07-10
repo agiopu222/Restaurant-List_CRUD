@@ -46,27 +46,30 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
   restaurantList.find() // 取出 restaurantList model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .then(lists => res.render('index', { lists: lists })) // 將資料傳給 index 樣板
+    .then(restaurants => res.render('index', { restaurants: restaurants })) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
 })
 
 // 設定search路由
 app.get('/search', (req, res) => {
+  // 輸入非餐廳名稱, 返回首頁
+  if (!req.query.keyword) {
+    return res.redirect("/")
+  }
   // console.log('req.query', req.query)
   const keyword = req.query.keyword
-  const lists = restaurantList.filter (
-    function(restaurants) {
-      return lists.title.includes(keyword)
+  const filterRestaurantsData = restaurantList.results.filter ( restaurants => {
+      return restaurants.name.includes(keyword)
   })
-  res.render('index', { lists: restaurantList })
+  res.render('index', { restaurants: filterRestaurantsData, keyword: keyword})
 })
 
+// CRUD, C
 // 設定路由, 新增頁面
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
-// CRUD, C
 app.post('/restaurants', (req, res) => {
   restaurantList.create(req.body)
   .then(() => res.redirect('/'))
@@ -80,7 +83,29 @@ app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   restaurantList.findById(id)
     .lean()
-    .then((list) => res.render('show', { list }))
+    .then((restaurant) => res.render('show', { restaurant: restaurant }))
+    .catch(error => console.log(error))
+})
+
+// CRUD, U 編輯&更新
+// 路由設定
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return restaurantList.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant: restaurant }))
+    .catch(error => console.log(error))
+})
+// 編輯資料
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const data = req.body
+  return restaurantList.findById(id)
+    .then((restaurant) => {
+      restaurant.data = data
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 

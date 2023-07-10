@@ -1,0 +1,97 @@
+<div class="m-5">
+  <form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
+
+    {{!-- 餐廳名稱 --}}
+    <div class="form-group">
+      <label for="name" class="col-form-label">
+        餐廳名稱：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="name" value="{{restaurant.name}}">
+      </div>
+    </div>
+
+    {{!-- 餐廳英文名稱 --}}
+    <div class="form-group">
+      <label for="name" class="col-form-label">
+        餐廳英文名稱：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="name_en" value="{{restaurant.name_en}}">
+      </div>
+    </div>
+
+    {{!-- 類別 --}}
+    <div class="form-group">
+      <label for="category" class="col-form-label">
+        類別：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="category" value="{{restaurant.category}}">
+      </div>
+    </div>
+
+    {{!-- 圖片網址 --}}
+    <div class="form-group">
+      <label for="image" class="col-form-label">
+        圖片網址：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="image" value="{{restaurant.image}}">
+      </div>
+    </div>
+
+    {{!-- 地址 --}}
+    <div class="form-group">
+      <label for="location" class="col-form-label">
+        地址：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="location" value="{{restaurant.location}}">
+      </div>
+    </div>
+
+    {{!-- 電話 --}}
+    <div class="form-group">
+      <label for="phone" class="col-form-label">
+        電話：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="phone" value="{{restaurant.phone}}">
+      </div>
+    </div>
+
+    {{!-- Google Map網址 --}}
+    <div class="form-group">
+      <label for="google_map" class="col-form-label">
+        Google Map網址：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="google_map" value="{{restaurant.google_map}}">
+      </div>
+    </div>
+
+    {{!-- 評分 --}}
+    <div class="form-group">
+      <label for="rating" class="col-form-label">
+        評分：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="rating" value="{{restaurant.rating}}">
+      </div>
+    </div>
+
+    {{!-- 餐廳簡介 --}}
+    <div class="form-group">
+      <label for="description" class="col-form-label">
+        餐廳簡介：
+      </label>
+      <div>
+        <input type="text" class="form-control" name="description" value="{{restaurant.description}}">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+    <a href="/" class="btn btn-secondary mt-3">Cancel</a>
+  </form>
+</div>
