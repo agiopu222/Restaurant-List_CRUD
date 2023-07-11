@@ -109,6 +109,15 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// CRUD, D
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return restaurantList.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 // 設定 port 3000
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')
