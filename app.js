@@ -57,9 +57,12 @@ app.get('/search', (req, res) => {
     return res.redirect("/")
   }
   // console.log('req.query', req.query)
-  const keyword = req.query.keyword
-  const filterRestaurantsData = restaurantList.results.filter ( restaurants => {
-      return restaurants.name.includes(keyword)
+  // 取關鍵字
+  const keyword = req.query.keyword.toLowerCase()
+  const filterRestaurantsData = restaurantList.results.filter ( 
+    restaurant => {
+      // 名稱或類別其中一個符合就回傳
+      return restaurant.name.toLowerCase().includes(keyword) || restaurant.category.includes(keyword)
   })
   res.render('index', { restaurants: filterRestaurantsData, keyword: keyword})
 })
@@ -109,7 +112,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// CRUD, D
+// CRUD, D 刪除
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   return restaurantList.findById(id)
