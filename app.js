@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // 設定連線到 mongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, seFindAndModify: false })
 
 // 取得資料庫連線狀態
 const db = mongoose.connection
@@ -59,7 +59,7 @@ app.get('/search', (req, res) => {
   // console.log('req.query', req.query)
   // 取關鍵字
   const keyword = req.query.keyword.toLowerCase()
-  const filterRestaurantsData = restaurantList.results.filter ( 
+  const filterRestaurantsData = restaurantList.filter ( 
     restaurant => {
       // 名稱或類別其中一個符合就回傳
       return restaurant.name.toLowerCase().includes(keyword) || restaurant.category.includes(keyword)
@@ -94,20 +94,15 @@ app.get('/restaurants/:id', (req, res) => {
 // 路由設定
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  return restaurantList.findById(id)
+  restaurantList.findById(id)
     .lean()
     .then((restaurant) => res.render('edit', { restaurant: restaurant }))
     .catch(error => console.log(error))
 })
 // 編輯資料
-app.post('/restaurants/:id/edit', (req, res) => {
+app.post('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  const data = req.body
-  return restaurantList.findById(id)
-    .then((restaurant) => {
-      restaurant.data = data
-      return restaurant.save()
-    })
+  restaurantList.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
