@@ -7,6 +7,9 @@ const exphbs = require('express-handlebars')
 // 載入餐廳資料
 const restaurantList = require('./models/restaurantdata')
 
+// 載入新增&編輯頁面資料過濾
+const checkData = require('./lib/checkdata')
+
 // 載入 mongoose
 const mongoose = require('mongoose')
 
@@ -16,7 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // 設定連線到 mongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, seFindAndModify: false })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // 取得資料庫連線狀態
 const db = mongoose.connection
@@ -74,9 +77,12 @@ app.get('/restaurants/new', (req, res) => {
 })
 
 app.post('/restaurants', (req, res) => {
-  restaurantList.create(req.body)
-  .then(() => res.redirect('/'))
-  .catch(error => console.log(error))
+  // console.log('checkData', checkData(req.body))
+  if (checkData.checkData(req.body)) {
+    restaurantList.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+  }
 })
 
 // CRUD, R
