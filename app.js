@@ -59,15 +59,19 @@ app.get('/search', (req, res) => {
   if (!req.query.keyword) {
     return res.redirect("/")
   }
-  // console.log('req.query', req.query)
   // 取關鍵字
   const keyword = req.query.keyword.toLowerCase()
-  const filterRestaurantsData = restaurantList.filter ( 
-    restaurant => {
+  // console.log('req.query', req.query)
+  restaurantList.find()
+  .lean()
+  .then( data => {
+    const filterRestaurantsData = data.filter ( 
+      restaurant => {
       // 名稱或類別其中一個符合就回傳
       return restaurant.name.toLowerCase().includes(keyword) || restaurant.category.includes(keyword)
+      })
+    res.render('index', { restaurants: filterRestaurantsData, keyword: keyword})
   })
-  res.render('index', { restaurants: filterRestaurantsData, keyword: keyword})
 })
 
 // CRUD, C
