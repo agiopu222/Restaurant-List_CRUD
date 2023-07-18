@@ -1,11 +1,11 @@
-# RestaurantList
+# Restaurant List
 
 我最愛的餐廳清單
-這是一份由個人在台北市最喜愛的8間餐廳組成的清單
+這是一份由個人最喜愛的餐廳組成的清單
 可進行搜尋、瀏覽詳細資訊、查詢Google地圖等功能
 
 ## 專案畫面
-![MyImage](/Restaurant_List_photo.png)
+![MyImage](/restaurantList_CRUD.png)
 
 ## 目錄
 
@@ -65,5 +65,8 @@ http://localhost:3000
 ## 開發工具
 + Node.js 16.19.1
 + Express 4.18.2
-+ Express-Handlebars 7.0.7
++ Express-Handlebars 5.3.5
 + Bootstrap 5.1.3
++ Body-parser: 1.20.2
++ Mongoose: 5.13.19
++ Dotenv: 16.3.1
