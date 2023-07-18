@@ -39,11 +39,11 @@
 ## 專案安裝流程
 1.確保您的電腦安裝node.js之後開啟終端機輸入以下指令下載專案
 ```
-git clone 
+git clone https://github.com/agiopu222/Restaurant-List_CRUD.git
 ```
 2.終端機輸入以下指令進入專案資料夾
 ```
-cd restaurantList
+cd restaurantList_CRUD
 ```
 3.終端機輸入以下指令安裝npm
 ```
