@@ -3,15 +3,16 @@ const express = require('express')
 const app = express()
 // 載入handlebars
 const exphbs = require('express-handlebars')
-
 // 載入餐廳資料
 const restaurantList = require('./models/restaurantdata')
-
 // 載入新增&編輯頁面資料過濾
 const checkData = require('./lib/checkdata')
-
 // 載入 mongoose
 const mongoose = require('mongoose')
+// 引用 body-parser
+const bodyParser = require('body-parser')
+// 取得資料庫連線狀態
+const db = mongoose.connection
 
 // 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -21,8 +22,6 @@ if (process.env.NODE_ENV !== 'production') {
 // 設定連線到 mongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
-// 取得資料庫連線狀態
-const db = mongoose.connection
 // 連線異常
 db.on('error', () => {
   console.log('mongodb error!')
@@ -32,8 +31,6 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-// 引用 body-parser
-const bodyParser = require('body-parser')
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }))
 
