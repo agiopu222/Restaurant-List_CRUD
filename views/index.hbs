@@ -17,18 +17,23 @@
   <div class="search-bar-outer">
     <div class="search-bar-inner">
       <form action="/search">
-        <h4 class="mb-2">尋找我愛的餐廳：</h4>
+        <h4 class="mb-4">尋找我愛的餐廳：</h4>
         <div class="input-group mb-3">
+          <a href="/restaurants/new" class="btn btn-major">新增餐廳</a>
           <input type="text" name="keyword" class="form-control" placeholder="請輸入餐廳中文/英文名稱/類別名稱" aria-label="Restaurant Name..." aria-describedby="button-addon2">
           <button type="submit" id="search-button"><i class="fa-duotone fa-magnifying-glass"></i></button>
         </div>
       </form>
-      <div class="text-end">
-        <a href="/restaurants/new"><button class="btn btn-primary">點我新增自己喜歡的餐廳</button></a>
-      </div>
     </div>
   </div>
 </div>
+{{!-- 搜尋無餐廳資料 --}}
+<div class="container mt-5">
+  <div class="alert alert-primary {{#if restaurants}}d-none{{/if}}" role="alert">
+    查無餐廳，請重新搜尋
+  </div>
+</div>
+
 
 <!-- restaurant list -->
 <div class="container mt-5">
