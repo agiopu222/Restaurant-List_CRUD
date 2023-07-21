@@ -83,12 +83,9 @@ app.get('/restaurants/new', (req, res) => {
 })
 
 app.post('/restaurants', (req, res) => {
-  // console.log('checkData', checkData(req.body))
-  if (checkData.checkData(req.body)) {
     restaurantList.create(req.body)
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
-  }
 })
 
 // CRUD, R

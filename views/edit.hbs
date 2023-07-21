@@ -1,97 +1,109 @@
 <div class="m-5">
-  <form action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST">
+  <form class="needs-validation" action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST" novalidate>
+
 
     {{!-- 餐廳名稱 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="name" class="col-form-label">
-        餐廳名稱：
+        *餐廳名稱：
       </label>
-      <div>
-        <input type="text" class="form-control" name="name" value="{{restaurant.name}}">
+      <input type="text" class="form-control" name="name" aria-describedby="nameHelp" value="{{restaurant.name}}" placeholder="＊必填，請輸入餐廳名稱" required="required">
+      <div class="invalid-feedback">
+        請輸入有效的餐廳名稱！
       </div>
     </div>
 
+
     {{!-- 餐廳英文名稱 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="name" class="col-form-label">
         餐廳英文名稱：
       </label>
-      <div>
-        <input type="text" class="form-control" name="name_en" value="{{restaurant.name_en}}">
-      </div>
+      <input type="text" class="form-control" name="name_en" value="{{restaurant.name_en}}" placeholder="選填，請輸入餐廳英文名稱">
     </div>
 
     {{!-- 類別 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="category" class="col-form-label">
-        類別：
+        *類別：
       </label>
-      <div>
-        <input type="text" class="form-control" name="category" value="{{restaurant.category}}">
+      {{!-- 下拉式選單 --}}
+      <select id="category" class="form-control" aria-describedby="categoryHelp" name="category" value="{{restaurant.category}}" placeholder="＊必填，請選擇餐廳類別" required="required">
+        <option selected>美式</option>
+        <option >義式餐廳</option>
+        <option >日本料理</option>
+        <option >韓式料理</option>
+        <option >台式料理</option>
+        <option >中東料理</option>
+        <option >咖啡</option>
+        <option >酒吧</option>
+      </select>
+      <div class="invalid-feedback">
+        請選擇餐廳類別！
       </div>
     </div>
 
     {{!-- 圖片網址 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="image" class="col-form-label">
         圖片網址：
       </label>
-      <div>
-        <input type="text" class="form-control" name="image" value="{{restaurant.image}}">
+      <input type="URL" class="form-control" name="image" value="{{restaurant.image}}" placeholder="選填，請輸入圖片網址">
+      <div class="invalid-feedback">
+        網址輸入不合法，請重新輸入!
       </div>
     </div>
 
     {{!-- 地址 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="location" class="col-form-label">
-        地址：
+        *地址：
       </label>
-      <div>
-        <input type="text" class="form-control" name="location" value="{{restaurant.location}}">
+      <input type="text" class="form-control" name="location" value="{{restaurant.location}}" placeholder="＊必填，請輸入完整地址" required="required">
+      <div class="invalid-feedback">
+        請輸入有效的餐廳地址！
       </div>
     </div>
 
     {{!-- 電話 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="phone" class="col-form-label">
         電話：
       </label>
-      <div>
-        <input type="text" class="form-control" name="phone" value="{{restaurant.phone}}">
-      </div>
+      <input type="telephone" class="form-control" name="phone"  value="{{restaurant.phone}}" placeholder="選填，請輸入餐廳電話號碼">
     </div>
 
     {{!-- Google Map網址 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="google_map" class="col-form-label">
         Google Map網址：
       </label>
-      <div>
-        <input type="text" class="form-control" name="google_map" value="{{restaurant.google_map}}">
+      <input type="URL" class="form-control" name="google_map" value="{{restaurant.google_map}}" placeholder="選填，請輸入餐廳的google map網址">
+      <div class="invalid-feedback">
+        網址輸入不合法，請重新輸入!
       </div>
     </div>
 
     {{!-- 評分 --}}
-    <div class="form-group">
-      <label for="rating" class="col-form-label">
-        評分：
+    <div class="mt-2 w-50 mx-auto">
+      <label for="rating" class="col-form-label" >
+        *評分：
       </label>
-      <div>
-        <input type="text" class="form-control" name="rating" value="{{restaurant.rating}}">
-      </div>
+      <input type="number" class="form-control" name="rating" min="0" max="5" step="0.1" value="{{restaurant.rating}}" placeholder="必填，請輸入評分1～5分" required="required">
     </div>
 
     {{!-- 餐廳簡介 --}}
-    <div class="form-group">
+    <div class="mt-2 w-50 mx-auto">
       <label for="description" class="col-form-label">
-        餐廳簡介：
+        *餐廳簡介：
       </label>
-      <div>
-        <input type="text" class="form-control" name="description" value="{{restaurant.description}}">
+      <textarea type="text" class="form-control" name="description" row="8" aria-describedby="descriptionHelp" placeholder="必填，請輸入餐廳簡介" required="required">{{restaurant.description}}</textarea>
+      <div id="descriptionHelp" class="invalid-feedback">
+        請輸入餐廳簡介！
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Save</button>
-    <a href="/" class="btn btn-secondary mt-3">Cancel</a>
+    <button type="submit" class="btn btn-primary btn-sm d-grid gap-2 col-6 mt-3 mx-auto">Save</button>
+    <a href="/" class="btn btn-secondary btn-sm d-grid gap-2 col-6 mt-3 mx-auto">Cancel</a>
   </form>
 </div>
