@@ -13,6 +13,8 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 // 取得資料庫連線狀態
 const db = mongoose.connection
+// 載入 method-override
+const methodOverride = require('method-override') 
 
 // 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -40,6 +42,9 @@ app.set('view engine', 'hbs')
 
 // 設定靜態檔案資料夾位置
 app.use(express.static('public'))
+
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
 
 // 設定路由
 // 首頁, 瀏覽全部餐廳
@@ -107,7 +112,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 // 編輯資料
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   restaurantList.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect(`/restaurants/${id}`))
@@ -115,7 +120,7 @@ app.post('/restaurants/:id', (req, res) => {
 })
 
 // CRUD, D 刪除
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return restaurantList.findById(id)
     .then(restaurant => restaurant.remove())
