@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "body-parser": "^1.20.2",
+    "ember-truth-helpers": "^3.1.1",
     "express": "^4.18.2",
     "express-handlebars": "^5.3.5",
     "method-override": "^3.0.0",
