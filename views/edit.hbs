@@ -1,13 +1,12 @@
-<div class="m-5">
-  <form class="needs-validation" action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST" novalidate>
-
+<div class="m-1">
+  <form class="was-validated" action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST" novalidate>
 
     {{!-- 餐廳名稱 --}}
     <div class="mt-2 w-50 mx-auto">
       <label for="name" class="col-form-label">
         *餐廳名稱：
       </label>
-      <input type="text" class="form-control" name="name" aria-describedby="nameHelp" value="{{restaurant.name}}" placeholder="＊必填，請輸入餐廳名稱" required="required">
+      <input type="text" class="form-control is-valid" name="name" aria-describedby="nameHelp" value="{{restaurant.name}}" placeholder="＊必填，請輸入餐廳名稱" required />
       <div class="invalid-feedback">
         請輸入有效的餐廳名稱！
       </div>
@@ -28,8 +27,9 @@
         *類別：
       </label>
       {{!-- 下拉式選單 --}}
-      <select id="category" class="form-control" aria-describedby="categoryHelp" name="category" value="{{restaurant.category}}" placeholder="＊必填，請選擇餐廳類別" required="required">
-        <option selected>美式</option>
+      <select id="category" class="form-select is-valid" aria-describedby="categoryHelp" name="category" placeholder="＊必填，請選擇餐廳類別" required />
+        <option selected>{{restaurant.category}}</option>
+        <option >美式</option>
         <option >義式餐廳</option>
         <option >日本料理</option>
         <option >韓式料理</option>
@@ -59,7 +59,7 @@
       <label for="location" class="col-form-label">
         *地址：
       </label>
-      <input type="text" class="form-control" name="location" value="{{restaurant.location}}" placeholder="＊必填，請輸入完整地址" required="required">
+      <input type="text" class="form-control is-valid" name="location" value="{{restaurant.location}}" placeholder="＊必填，請輸入完整地址" required />
       <div class="invalid-feedback">
         請輸入有效的餐廳地址！
       </div>
@@ -89,15 +89,19 @@
       <label for="rating" class="col-form-label" >
         *評分：
       </label>
-      <input type="number" class="form-control" name="rating" min="0" max="5" step="0.1" value="{{restaurant.rating}}" placeholder="必填，請輸入評分1～5分" required="required">
+      <input type="number" class="form-control is-valid" name="rating" min="0" max="5" step="0.1" value="{{restaurant.rating}}" placeholder="必填，請輸入評分0～5分" required />
+      <div class="invalid-feedback">
+        請輸入有效的餐廳評分！
+      </div>
     </div>
+
 
     {{!-- 餐廳簡介 --}}
     <div class="mt-2 w-50 mx-auto">
       <label for="description" class="col-form-label">
         *餐廳簡介：
       </label>
-      <textarea type="text" class="form-control" name="description" row="8" aria-describedby="descriptionHelp" placeholder="必填，請輸入餐廳簡介" required="required">{{restaurant.description}}</textarea>
+      <textarea class="form-control is-valid" name="description" row="8" aria-describedby="descriptionHelp" placeholder="必填，請輸入餐廳簡介" required />{{restaurant.description}}</textarea>
       <div id="descriptionHelp" class="invalid-feedback">
         請輸入餐廳簡介！
       </div>
