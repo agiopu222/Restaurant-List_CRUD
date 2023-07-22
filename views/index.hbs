@@ -30,7 +30,7 @@
 {{!-- 搜尋無餐廳資料 --}}
 <div class="container mt-5">
   <div class="alert alert-primary {{#if restaurants}}d-none{{/if}}" role="alert">
-    查無餐廳，請重新搜尋
+    無餐廳資料
   </div>
 </div>
 
@@ -57,12 +57,35 @@
                 </span>
 
                 <div class="footer mb-1 d-flex justify-content-end align-items-center">
-                {{!-- edit --}}
-                <a href="/restaurants/{{this._id}}/edit"><button class="btn btn-info">編輯</button></a>
-                {{!-- delete --}}
-                <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-                  <button type="submit" class="btn btn-danger" id="delete" data-id ="{{this._id}}">刪除</button>
-                </form>
+
+                  {{!-- edit --}}
+                  <a href="/restaurants/{{this._id}}/edit"><button class="btn btn-info">編輯</button></a>
+
+                  {{!-- delete --}}
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    刪除
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">刪除餐廳清單</h5>
+                        </div>
+                        <div class="modal-body">
+                          確定要刪除 {{this.name}} 餐廳清單嗎？
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">取消</button>
+                          <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-danger" >刪除</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </a>
