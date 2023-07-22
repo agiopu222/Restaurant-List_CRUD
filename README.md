@@ -37,36 +37,46 @@
 **使用者可以刪除一家餐廳**
 
 ## 專案安裝流程
-1.確保您的電腦安裝node.js之後開啟終端機輸入以下指令下載專案
+1.確保您的電腦安裝node.js後，開啟終端機輸入以下指令下載專案
 ```
 git clone https://github.com/agiopu222/Restaurant-List_CRUD.git
 ```
-2.終端機輸入以下指令進入專案資料夾
+2.進入專案資料夾，修改.env.example檔名，改為.env，並在其[]中的內容請依取得的金鑰做替換
 ```
-cd restaurantList_CRUD
+MONGODB_URI=mongodb+srv://[your_username]:[your_password]@cluster0.xivrwx2.mongodb.net/[database_name]?retryWrites=true&w=majority
 ```
-3.終端機輸入以下指令安裝npm
+3.終端機輸入以下指令安裝npm套件
 ```
 npm install
 ```
-4.終端機輸入以下指令開啟伺服器
+4.安裝nodemon
 ```
-nodemon app.js
+npm install nodemon
 ```
-5.開啟任意瀏覽器輸入網址就可以進入畫面囉
+5.終端機輸入以下指令建立種子資料
+```
+node models/seeds/restaurantdataSeeder.js
+```
+6.終端機輸入以下指令開啟伺服器
+```
+node app.js
+```
+7.開啟任意瀏覽器輸入網址就可以進入畫面
 ```
 http://localhost:3000
 ```
-6. 如需停止
+8.如需停止，終端機輸入以下指令
 ```
 ^C //ctrl=C
 ```
 
 ## 開發工具
-+ Node.js 16.19.1
-+ Express 4.18.2
-+ Express-Handlebars 5.3.5
-+ Bootstrap 5.1.3
-+ Body-parser: 1.20.2
-+ Mongoose: 5.13.19
-+ Dotenv: 16.3.1
++ Node.js @16.19.1
++ Express @4.18.2
++ Express-Handlebars @5.3.5
++ Bootstrap @5.1.3
++ Body-parser @1.20.2
++ Mongoose @5.13.19
++ Dotenv @16.3.1
++ Method-override @3.0.0
++ Ember-truth-helpers @3.1.1
