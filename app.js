@@ -17,7 +17,8 @@ const db = mongoose.connection
 const methodOverride = require('method-override') 
 //載入ember-truth-helpers，這樣才能使用{{#if (eq value1 value2 )}}的判斷
 const emberTruthHelpers = require('ember-truth-helpers')
-
+// 載入路由
+const routes = require('./routes')
 
 // 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
