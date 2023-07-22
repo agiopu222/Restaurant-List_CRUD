@@ -11,4 +11,25 @@ router.get('/', (req, res) => {
         .catch(error => console.error(error)) // 錯誤處理
 })
 
+// 設定search路由
+router.get('/search', (req, res) => {
+    // 輸入非餐廳名稱, 返回首頁
+    if (!req.query.keyword) {
+      return res.redirect("/")
+    }
+    // 取關鍵字
+    const keyword = req.query.keyword.toLowerCase()
+    // console.log('req.query', req.query)
+    restaurantList.find()
+    .lean()
+    .then( data => {
+      const filterRestaurantsData = data.filter ( 
+        restaurant => {
+        // 名稱或類別其中一個符合就回傳
+        return restaurant.name.toLowerCase().includes(keyword) || restaurant.category.includes(keyword)
+        })
+      res.render('index', { restaurants: filterRestaurantsData, keyword: keyword})
+    })
+})
+
 module.exports = router
