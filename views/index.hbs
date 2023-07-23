@@ -19,9 +19,9 @@
       <form action="/search">
         <h4 class="mb-4">尋找我愛的餐廳：</h4>
         <div class="input-group mb-3">
-          <a href="/restaurants/new" class="btn btn-major">新增餐廳</a>
+          <a href="/restaurants/new" class="btn-btrs">新增餐廳</a>
           <input type="text" name="keyword" class="form-control" placeholder="請輸入餐廳中文/英文名稱/類別名稱" aria-label="Restaurant Name..." aria-describedby="button-addon2">
-          <button type="submit" id="search-button"><i class="fa-duotone fa-magnifying-glass"></i></button>
+          <button type="submit" id="search-button" class="bdrs"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       </form>
     </div>
@@ -63,12 +63,12 @@
 
                   {{!-- delete --}}
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#aa{{this._id}}">
                     刪除
                   </button>
 
                   <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="aa{{this._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">

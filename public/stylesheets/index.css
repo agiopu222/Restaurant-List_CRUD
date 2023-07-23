@@ -45,6 +45,23 @@ header {
   color: white;
 }
 
+.bdrs {
+  background-color: #9b4b4b;
+  width: 40px;
+  border-radius: 15%; /*top-left top-right bottom-left bottom-right*/
+  color: #fce2cf;
+}
+
+.btn-btrs {
+  text-align: center;
+  background-color: #9b4b4b;
+  color: #fce2cf;
+  width: 80px;
+  border-radius: 15%; /*top-left top-right bottom-left bottom-right*/
+  padding: 5px;
+  text-decoration:none;
+}
+
 .form-control:focus {
   box-shadow: none;
   border-color: #ced4da;
