@@ -6,8 +6,10 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 // 載入 method-override
 const methodOverride = require('method-override') 
-//載入ember-truth-helpers，這樣才能使用{{#if (eq value1 value2 )}}的判斷
-const emberTruthHelpers = require('ember-truth-helpers')
+//載入handlebars-helpers，這樣才能使用{{#if (eq value1 value2)}}的判斷
+const helpers = require('handlebars-helpers')({
+  handlebars: handlebars
+});
 
 // 載入路由, 自己定義的
 const routes = require('./routes')
