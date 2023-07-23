@@ -79,4 +79,4 @@ http://localhost:3000
 + Mongoose @5.13.19
 + Dotenv @16.3.1
 + Method-override @3.0.0
-+ Ember-truth-helpers @3.1.1
++ Handlebars-helpers @0.10.0
