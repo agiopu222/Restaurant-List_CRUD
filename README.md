@@ -73,8 +73,4 @@ http://localhost:3000
 + Express @4.18.2
 + Express-Handlebars @5.3.5
 + Bootstrap @5.1.3
-+ Body-parser @1.20.2
 + Mongoose @5.13.19
-+ Dotenv @16.3.1
-+ Method-override @3.0.0
-+ Handlebars-helpers @0.10.0
